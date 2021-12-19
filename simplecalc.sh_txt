@@ -1,0 +1,59 @@
+#!/bin/bash
+#give the user the options to choose
+one1="---------Simple Calculator---------"
+two2="Please choose one of the following:"
+thr3="1 - Addition"
+for4="2 - Subtraction"
+fiv5="3 - Multiplication"
+six6="4 - Division"
+
+for x in once
+do 
+	printf "\n\n"
+	echo "$one1"
+	sleep 0.05
+	echo "$two2"
+	sleep 0.05
+	echo "$thr3"
+	sleep 0.05
+	echo "$for4"
+	sleep 0.05
+	echo "$fiv5"
+	sleep 0.05
+	echo "$six6"
+	sleep 0.05
+	echo "0 - Exit"
+	sleep 0.05
+	printf "\n\n"	
+done
+
+echo "Please enter your option: "
+read calcOption
+
+if [ $calcOption -eq 0 ]; then
+	exit
+elif [ $calcOption -gt 4 ]; then
+	echo "Please enter a number greater than or equal to 0 and less than 4, try again:"
+	exit
+else
+	echo "Please enter the first number: "
+	read firstNumber
+
+	echo "Please enter the second number: "
+	read secondNumber
+fi
+
+counter=0
+
+while [ $counter -eq 0 ]
+do
+	counter=$(( $counter + 1 ))
+	case $calcOption in
+		1)result=`echo $firstNumber + $secondNumber | bc`;;
+		2)result=`echo $firstNumber - $secondNumber | bc`;;
+		3)result=`echo $firstNumber \* $secondNumber | bc`;;
+		4)result=`echo "scale=2;$firstNumber / $secondNumber" | bc`;;
+	esac
+done
+echo "Final Answer is: $result"
+
