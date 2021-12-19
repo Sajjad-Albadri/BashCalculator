@@ -1,11 +1,13 @@
 #!/bin/bash
-#give the user the options to choose
+# give the user the options to choose
 one1="---------Simple Calculator---------"
 two2="Please choose one of the following:"
 thr3="1 - Addition"
 for4="2 - Subtraction"
 fiv5="3 - Multiplication"
 six6="4 - Division"
+
+# a FOR loop that prints out the options one by one
 
 for x in once
 do 
@@ -27,14 +29,24 @@ do
 	printf "\n\n"	
 done
 
+# a prompt is shown to the user and user's input is saved into calcOption
+
 echo "Please enter your option: "
 read calcOption
 
+# if the user's input is equal to 0 then exit
+
 if [ $calcOption -eq 0 ]; then
 	exit
+	
+# if the user's input is greater than 4 then print out "Please enter..." and then exit
+
 elif [ $calcOption -gt 4 ]; then
 	echo "Please enter a number greater than or equal to 0 and less than 4, try again:"
 	exit
+
+# otherwise enter the first and second number to calculate
+
 else
 	echo "Please enter the first number: "
 	read firstNumber
@@ -43,13 +55,16 @@ else
 	read secondNumber
 fi
 
-counter=0
+counter=0 #counter starts at 0
 
 while [ $counter -eq 0 ]
 do
 	counter=$(( $counter + 1 ))
 	case $calcOption in
-		1)result=`echo $firstNumber + $secondNumber | bc`;;
+		# result stores the echoed (or outputted) variable firstNumber and variable secondNumber's result in "result". 
+		# However, this is an echo command that does the arthemetic calculation through
+		# a pipleline to the basic calculator.
+		1)result=`echo $firstNumber + $secondNumber | bc`;; 	
 		2)result=`echo $firstNumber - $secondNumber | bc`;;
 		3)result=`echo $firstNumber \* $secondNumber | bc`;;
 		4)result=`echo "scale=2;$firstNumber / $secondNumber" | bc`;;
